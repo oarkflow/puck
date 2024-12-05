@@ -82,7 +82,13 @@ export function Puck<
   iframe: _iframe,
   dnd,
   initialHistory: _initialHistory,
-    ...props
+  leftSideBarClassName,
+  listItemTemplate,
+  leftSideBarDrawerClassName,
+  leftSideBarItemClassName,
+  previewClassName,
+  rightSideBarWrapperClassName,
+  rightSideBarClassName,
 }: {
   children?: ReactNode;
   config: UserConfig;
@@ -105,6 +111,13 @@ export function Puck<
   }) => ReactElement;
   headerTitle?: string;
   headerPath?: string;
+  leftSideBarClassName?: string;
+  listItemTemplate?: string;
+  leftSideBarDrawerClassName?: string;
+  leftSideBarItemClassName?: string;
+  previewClassName?: string;
+  rightSideBarWrapperClassName?: string;
+  rightSideBarClassName?: string;
   viewports?: Viewports;
   iframe?: IframeConfig;
   dnd?: {
@@ -630,15 +643,15 @@ export function Puck<
                           </header>
                         </CustomHeader>
                         <div className={getLayoutClassName("leftSideBar")}>
-                          <SidebarSection className={props.leftSideBarClassName} title="Components" noBorderTop>
-                            <Components listItemTemplate={props.listItemTemplate} className={props.leftSideBarDrawerClassName} itemClassName={props.leftSideBarItemClassName}/>
+                          <SidebarSection className={leftSideBarClassName} title="Components" noBorderTop>
+                            <Components listItemTemplate={listItemTemplate} className={leftSideBarDrawerClassName} itemClassName={leftSideBarItemClassName}/>
                           </SidebarSection>
                           <SidebarSection title="Outline">
                             <Outline />
                           </SidebarSection>
                         </div>
-                        <Canvas previewClassName={props.previewClassName} />
-                        <div className={`${getLayoutClassName("rightSideBar")} ${props?.rightSideBarWrapperClassName}`}>
+                        <Canvas previewClassName={previewClassName} />
+                        <div className={`${getLayoutClassName("rightSideBar")} ${rightSideBarWrapperClassName}`}>
                           <SidebarSection
                               noPadding
                               noBorderTop
@@ -646,7 +659,7 @@ export function Puck<
                               title={
                                 selectedItem ? selectedComponentLabel : "Page"
                               }
-                              className={props?.rightSideBarClassName}
+                              className={rightSideBarClassName}
                           >
                             <Fields />
                           </SidebarSection>
