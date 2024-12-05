@@ -2,9 +2,8 @@ import { ReactNode, useEffect, useState } from "react";
 import { Config, UiState } from "../types";
 import { ComponentList } from "../components/ComponentList";
 
-export const useComponentList = (config: Config, ui: UiState) => {
+export const useComponentList = (config: Config, ui: UiState, itemClassName?: string, className?: string, listItemTemplate?: any) => {
   const [componentList, setComponentList] = useState<ReactNode[]>();
-
   useEffect(() => {
     if (Object.keys(ui.componentList).length > 0) {
       const matchedComponents: string[] = [];
@@ -22,6 +21,9 @@ export const useComponentList = (config: Config, ui: UiState) => {
               id={categoryKey}
               key={categoryKey}
               title={category.title || categoryKey}
+              className={className}
+              itemClassName={itemClassName}
+              listItemTemplate={listItemTemplate}
             >
               {category.components.map((componentName, i) => {
                 matchedComponents.push(componentName as string);
@@ -34,6 +36,8 @@ export const useComponentList = (config: Config, ui: UiState) => {
                     label={(componentConf["label"] ?? componentName) as string}
                     name={componentName as string}
                     index={i}
+                    className={itemClassName}
+                    template={listItemTemplate}
                   />
                 );
               })}
@@ -56,6 +60,9 @@ export const useComponentList = (config: Config, ui: UiState) => {
             id="other"
             key="other"
             title={ui.componentList.other?.title || "Other"}
+            className={className}
+            itemClassName={itemClassName}
+            listItemTemplate={listItemTemplate}
           >
             {remainingComponents.map((componentName, i) => {
               const componentConf = config.components[componentName] || {};
@@ -66,6 +73,8 @@ export const useComponentList = (config: Config, ui: UiState) => {
                   name={componentName as string}
                   label={(componentConf["label"] ?? componentName) as string}
                   index={i}
+                  className={itemClassName}
+                  template={listItemTemplate}
                 />
               );
             })}

@@ -51,9 +51,11 @@ const DrawerItem = ({
   label,
   index,
   isDragDisabled,
+  template
 }: {
   name: string;
   children?: (props: { children: ReactNode; name: string }) => ReactElement;
+  template?: (props: { label: string }) => ReactElement;
   id?: string;
   label?: string;
   index: number;
@@ -81,7 +83,7 @@ const DrawerItem = ({
       <CustomInner name={name}>
         <div className={getClassNameItem("draggableWrapper")}>
           <div className={getClassNameItem("draggable")}>
-            <div className={getClassNameItem("name")}>{label ?? name}</div>
+            <div className={getClassNameItem("name")}>{template ? template({label: label ?? name}) : label ?? name}</div>
             <div className={getClassNameItem("icon")}>
               <DragIcon isDragDisabled={isDragDisabled} />
             </div>

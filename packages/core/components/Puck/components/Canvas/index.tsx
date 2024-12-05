@@ -20,7 +20,7 @@ const getClassName = getClassNameFactory("PuckCanvas", styles);
 
 const ZOOM_ON_CHANGE = true;
 
-export const Canvas = () => {
+export const Canvas = ({previewClassName}) => {
   const { status, iframe } = useAppContext();
   const { dispatch, state, overrides, setUi, zoomConfig, setZoomConfig } =
     useAppContext();
@@ -179,7 +179,7 @@ export const Canvas = () => {
           suppressHydrationWarning // Suppress hydration warning as frame is not visible until after load
         >
           <CustomPreview>
-            <Preview />
+            <Preview className={previewClassName} />
           </CustomPreview>
         </div>
         <div className={getClassName("loader")}>

@@ -16,7 +16,7 @@ const getClassName = getClassNameFactory("DropZone", styles);
 
 export { DropZoneProvider, dropZoneContext } from "./context";
 
-function DropZoneEdit({ zone, allow, disallow, style }: DropZoneProps) {
+function DropZoneEdit({ zone, allow, disallow, style, className }: DropZoneProps) {
   const appContext = useAppContext();
   const ctx = useContext(dropZoneContext);
 
@@ -162,7 +162,7 @@ function DropZoneEdit({ zone, allow, disallow, style }: DropZoneProps) {
 
   return (
     <div
-      className={getClassName({
+      className={`${getClassName({
         isRootZone,
         userIsDragging,
         draggingOverArea,
@@ -172,7 +172,7 @@ function DropZoneEdit({ zone, allow, disallow, style }: DropZoneProps) {
         isDisabled: !isEnabled,
         isAreaSelected,
         hasChildren: content.length > 0,
-      })}
+      })} ${className}`}
       onMouseUp={() => {
         setZoneWillDrag("");
       }}

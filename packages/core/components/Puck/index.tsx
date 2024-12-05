@@ -82,6 +82,7 @@ export function Puck<
   iframe: _iframe,
   dnd,
   initialHistory: _initialHistory,
+    ...props
 }: {
   children?: ReactNode;
   config: UserConfig;
@@ -629,22 +630,23 @@ export function Puck<
                           </header>
                         </CustomHeader>
                         <div className={getLayoutClassName("leftSideBar")}>
-                          <SidebarSection title="Components" noBorderTop>
-                            <Components />
+                          <SidebarSection className={props.leftSideBarClassName} title="Components" noBorderTop>
+                            <Components listItemTemplate={props.listItemTemplate} className={props.leftSideBarDrawerClassName} itemClassName={props.leftSideBarItemClassName}/>
                           </SidebarSection>
                           <SidebarSection title="Outline">
                             <Outline />
                           </SidebarSection>
                         </div>
-                        <Canvas />
-                        <div className={getLayoutClassName("rightSideBar")}>
+                        <Canvas previewClassName={props.previewClassName} />
+                        <div className={`${getLayoutClassName("rightSideBar")} ${props?.rightSideBarWrapperClassName}`}>
                           <SidebarSection
-                            noPadding
-                            noBorderTop
-                            showBreadcrumbs
-                            title={
-                              selectedItem ? selectedComponentLabel : "Page"
-                            }
+                              noPadding
+                              noBorderTop
+                              showBreadcrumbs
+                              title={
+                                selectedItem ? selectedComponentLabel : "Page"
+                              }
+                              className={props?.rightSideBarClassName}
                           >
                             <Fields />
                           </SidebarSection>

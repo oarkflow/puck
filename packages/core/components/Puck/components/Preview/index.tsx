@@ -11,7 +11,7 @@ const getClassName = getClassNameFactory("PuckPreview", styles);
 
 type PageProps = DefaultRootRenderProps;
 
-export const Preview = ({ id = "puck-preview" }: { id?: string }) => {
+export const Preview = ({ id = "puck-preview", className }: { id?: string, className?: string }) => {
   const { config, dispatch, state, setStatus, iframe, overrides } =
     useAppContext();
 
@@ -58,7 +58,7 @@ export const Preview = ({ id = "puck-preview" }: { id?: string }) => {
                   puck={{ renderDropZone: DropZone, isEditing: true }}
                   editMode={true} // DEPRECATED
                 >
-                  <DropZone zone={rootDroppableId} />
+                  <DropZone className={className} zone={rootDroppableId} />
                 </Page>
               );
 

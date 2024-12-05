@@ -17,10 +17,12 @@ export const SidebarSection = ({
   noBorderTop,
   noPadding,
   isLoading,
+  className,
 }: {
   children: ReactNode;
   title: ReactNode;
   background?: string;
+  className?: string;
   showBreadcrumbs?: boolean;
   noBorderTop?: boolean;
   noPadding?: boolean;
@@ -50,7 +52,7 @@ export const SidebarSection = ({
                 </div>
               ))
             : null}
-          <div className={getClassName("heading")}>
+          <div className={`${getClassName("heading")} ${className}`}>
             <Heading rank="2" size="xs">
               {title}
             </Heading>
